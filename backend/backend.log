@@ -1,0 +1,839 @@
+INFO:     Started server process [7713]
+INFO:     Waiting for application startup.
+2025-10-23 13:10:31,999 - app.main - INFO - 🚀 Starting Project Samarth Backend...
+2025-10-23 13:10:31,999 - app.main - INFO - ✅ Data fetcher initialized
+2025-10-23 13:10:31,999 - app.services.rag_service - INFO - Initializing RAG service...
+2025-10-23 13:10:32,391 - chromadb.telemetry.product.posthog - ERROR - Failed to send telemetry event ClientStartEvent: capture() takes 1 positional argument but 3 were given
+2025-10-23 13:10:32,397 - chromadb.telemetry.product.posthog - ERROR - Failed to send telemetry event ClientCreateCollectionEvent: capture() takes 1 positional argument but 3 were given
+2025-10-23 13:10:32,398 - app.services.rag_service - INFO - Indexing datasets...
+2025-10-23 13:10:32,398 - app.services.data_fetcher - INFO - Loading crop_production from cache
+2025-10-23 13:10:32,423 - app.services.data_fetcher - INFO - Loading area_production from cache
+2025-10-23 13:10:32,426 - app.services.data_fetcher - INFO - Loading rainfall_data from cache
+2025-10-23 13:10:32,428 - app.services.data_fetcher - INFO - Loading climate_data from cache
+2025-10-23 13:10:32,430 - app.services.data_fetcher - INFO - Loading agri_prices from cache
+2025-10-23 13:10:34,572 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-10-23 13:10:35,005 - chromadb.telemetry.product.posthog - ERROR - Failed to send telemetry event CollectionAddEvent: capture() takes 1 positional argument but 3 were given
+2025-10-23 13:10:35,005 - app.services.rag_service - INFO - Indexed 36 documents
+2025-10-23 13:10:35,006 - app.services.rag_service - INFO - RAG service initialized with 36 indexed documents
+2025-10-23 13:10:35,006 - app.main - INFO - ✅ RAG service initialized
+2025-10-23 13:10:35,006 - app.main - INFO - 📊 Loading initial datasets...
+2025-10-23 13:10:35,006 - app.services.data_fetcher - INFO - Loading initial datasets...
+2025-10-23 13:10:35,006 - app.services.data_fetcher - INFO - Loading crop_production from cache
+2025-10-23 13:10:35,009 - app.services.data_fetcher - INFO - Loading area_production from cache
+2025-10-23 13:10:35,010 - app.services.data_fetcher - INFO - Loading rainfall_data from cache
+2025-10-23 13:10:35,011 - app.services.data_fetcher - INFO - Loading climate_data from cache
+2025-10-23 13:10:35,012 - app.services.data_fetcher - INFO - Loading agri_prices from cache
+2025-10-23 13:10:35,013 - app.services.data_fetcher - INFO - Loaded crop_production: 1100 rows
+2025-10-23 13:10:35,013 - app.services.data_fetcher - INFO - Loaded area_production: 1100 rows
+2025-10-23 13:10:35,013 - app.services.data_fetcher - INFO - Loaded rainfall_data: 1320 rows
+2025-10-23 13:10:35,013 - app.services.data_fetcher - INFO - Loaded climate_data: 660 rows
+2025-10-23 13:10:35,014 - app.services.data_fetcher - INFO - Loaded agri_prices: 2640 rows
+2025-10-23 13:10:35,014 - app.main - INFO - ✅ Initial datasets loaded
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2025-10-23 13:13:51,391 - app.services.llm_service - INFO - Initialized OpenAI client with model gpt-4-turbo-preview
+2025-10-23 13:13:51,392 - app.services.query_engine - INFO - Processing query [efcd41d7-dbe6-44c3-aacd-9f4b763237fc]: Compare rice production in Punjab and West Bengal
+2025-10-23 13:13:51,392 - app.services.query_engine - INFO - Step 1: Decomposing query...
+2025-10-23 13:13:58,647 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-23 13:13:58,654 - app.services.query_engine - INFO - Query decomposition: {'intent': 'comparison', 'sub_queries': ['Total rice production in Punjab for a specific time period', 'Total rice production in West Bengal for a specific time period'], 'required_data': {'states': ['Punjab', 'West Bengal'], 'districts': [], 'crops': ['rice'], 'time_period': {'start_year': None, 'end_year': None}, 'metrics': ['production']}, 'query_type': 'agricultural'}
+2025-10-23 13:13:58,654 - app.services.query_engine - INFO - Step 2: Finding relevant datasets...
+2025-10-23 13:13:59,466 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-10-23 13:13:59,472 - chromadb.telemetry.product.posthog - ERROR - Failed to send telemetry event CollectionQueryEvent: capture() takes 1 positional argument but 3 were given
+2025-10-23 13:13:59,472 - app.services.query_engine - INFO - Found 2 relevant datasets
+2025-10-23 13:13:59,472 - app.services.query_engine - INFO - Step 3: Retrieving data...
+2025-10-23 13:13:59,472 - app.services.query_engine - WARNING - Failed to retrieve data from crop_production: unsupported operand type(s) for +: 'NoneType' and 'int'
+2025-10-23 13:13:59,472 - app.services.query_engine - WARNING - Failed to retrieve data from area_production: unsupported operand type(s) for +: 'NoneType' and 'int'
+2025-10-23 13:13:59,473 - app.services.query_engine - INFO - Step 4: Generating answer...
+2025-10-23 13:14:17,830 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-23 13:14:17,831 - app.services.query_engine - INFO - Query processed successfully in 26.44s
+INFO:     127.0.0.1:51520 - "POST /api/v1/chat HTTP/1.1" 200 OK
+2025-10-23 13:16:06,107 - app.services.llm_service - INFO - Initialized OpenAI client with model gpt-4-turbo-preview
+2025-10-23 13:16:06,107 - app.services.query_engine - INFO - Processing query [b38b094a-91e8-4f12-b498-1668d3f0027a]: Compare rice production in Punjab and West Bengal
+2025-10-23 13:16:06,107 - app.services.query_engine - INFO - Step 1: Decomposing query...
+2025-10-23 13:16:12,572 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-23 13:16:12,587 - app.services.query_engine - INFO - Query decomposition: {'intent': 'comparison', 'sub_queries': ['Total rice production in Punjab for a specified period', 'Total rice production in West Bengal for a specified period'], 'required_data': {'states': ['Punjab', 'West Bengal'], 'districts': [], 'crops': ['rice'], 'time_period': {'start_year': None, 'end_year': None}, 'metrics': ['production']}, 'query_type': 'agricultural'}
+2025-10-23 13:16:12,588 - app.services.query_engine - INFO - Step 2: Finding relevant datasets...
+2025-10-23 13:16:13,340 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-10-23 13:16:13,343 - app.services.query_engine - INFO - Found 2 relevant datasets
+2025-10-23 13:16:13,344 - app.services.query_engine - INFO - Step 3: Retrieving data...
+2025-10-23 13:16:13,344 - app.services.query_engine - WARNING - Failed to retrieve data from crop_production: unsupported operand type(s) for +: 'NoneType' and 'int'
+2025-10-23 13:16:13,344 - app.services.query_engine - WARNING - Failed to retrieve data from area_production: unsupported operand type(s) for +: 'NoneType' and 'int'
+2025-10-23 13:16:13,344 - app.services.query_engine - INFO - Step 4: Generating answer...
+2025-10-23 13:16:32,783 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-23 13:16:32,787 - app.services.query_engine - INFO - Query processed successfully in 26.68s
+INFO:     127.0.0.1:51536 - "POST /api/v1/chat HTTP/1.1" 200 OK
+2025-10-23 13:16:50,951 - app.services.data_fetcher - INFO - Loading crop_production from cache
+2025-10-23 13:16:50,957 - app.services.data_fetcher - INFO - Loading area_production from cache
+2025-10-23 13:16:50,958 - app.services.data_fetcher - INFO - Loading rainfall_data from cache
+2025-10-23 13:16:50,960 - app.services.data_fetcher - INFO - Loading climate_data from cache
+2025-10-23 13:16:50,961 - app.services.data_fetcher - INFO - Loading agri_prices from cache
+INFO:     127.0.0.1:51550 - "GET /api/v1/datasets?category%5Bclient%5D=%5Bobject+Object%5D&category%5BqueryKey%5D%5B0%5D=datasets&category%5Bsignal%5D=%5Bobject+AbortSignal%5D HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51744 - "GET /api/v1/health HTTP/1.1" 200 OK
+2025-10-23 13:26:42,893 - app.services.llm_service - INFO - Initialized OpenAI client with model gpt-4-turbo-preview
+2025-10-23 13:26:42,893 - app.services.query_engine - INFO - Processing query [785ab690-0dcc-4170-b775-e1a321e9d830]: What crops are in the dataset?
+2025-10-23 13:26:42,894 - app.services.query_engine - INFO - Step 1: Decomposing query...
+2025-10-23 13:26:50,227 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-23 13:26:50,237 - app.services.query_engine - INFO - Query decomposition: {'intent': 'general', 'sub_queries': ['List all crops present in the dataset'], 'required_data': {'states': [], 'districts': [], 'crops': [], 'time_period': {}, 'metrics': []}, 'query_type': 'agricultural'}
+2025-10-23 13:26:50,237 - app.services.query_engine - INFO - Step 2: Finding relevant datasets...
+2025-10-23 13:26:51,098 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-10-23 13:26:51,112 - app.services.query_engine - INFO - Found 3 relevant datasets
+2025-10-23 13:26:51,113 - app.services.query_engine - INFO - Step 3: Retrieving data...
+2025-10-23 13:26:51,113 - app.services.data_fetcher - INFO - Loading crop_production from cache
+2025-10-23 13:26:51,186 - app.services.data_fetcher - INFO - Loading area_production from cache
+2025-10-23 13:26:51,192 - app.services.data_fetcher - INFO - Loading agri_prices from cache
+2025-10-23 13:26:51,197 - app.services.query_engine - INFO - Step 4: Generating answer...
+2025-10-23 13:27:17,621 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-23 13:27:17,625 - app.services.query_engine - INFO - Query processed successfully in 34.73s
+INFO:     127.0.0.1:51802 - "POST /api/v1/chat HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52066 - "OPTIONS /api/v1/chat HTTP/1.1" 200 OK
+2025-10-23 13:30:27,769 - app.services.llm_service - INFO - Initialized OpenAI client with model gpt-4-turbo-preview
+2025-10-23 13:30:27,769 - app.services.query_engine - INFO - Processing query [13f77f2a-08b3-4936-b10a-9fe7e78e54ef]: Which state had highest rainfall in 2020?
+2025-10-23 13:30:27,769 - app.services.query_engine - INFO - Step 1: Decomposing query...
+2025-10-23 13:30:33,680 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-23 13:30:33,686 - app.services.query_engine - INFO - Query decomposition: {'intent': 'ranking', 'sub_queries': ['Identify the total rainfall in each state for the year 2020', 'Rank the states based on the total rainfall received in 2020'], 'required_data': {'states': [], 'districts': [], 'crops': [], 'time_period': {'start_year': 2020, 'end_year': 2020}, 'metrics': ['rainfall']}, 'query_type': 'climate'}
+2025-10-23 13:30:33,686 - app.services.query_engine - INFO - Step 2: Finding relevant datasets...
+2025-10-23 13:30:35,934 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-10-23 13:30:35,941 - app.services.query_engine - INFO - Found 1 relevant datasets
+2025-10-23 13:30:35,941 - app.services.query_engine - INFO - Step 3: Retrieving data...
+2025-10-23 13:30:35,942 - app.services.data_fetcher - INFO - Loading rainfall_data from cache
+2025-10-23 13:30:35,962 - app.services.query_engine - INFO - Step 4: Generating answer...
+2025-10-23 13:30:51,908 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-23 13:30:51,912 - app.services.query_engine - INFO - Query processed successfully in 24.14s
+INFO:     127.0.0.1:52066 - "POST /api/v1/chat HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52970 - "GET /api/v1/health HTTP/1.1" 200 OK
+2025-10-23 13:41:43,671 - app.services.llm_service - INFO - Initialized OpenAI client with model gpt-4-turbo-preview
+2025-10-23 13:41:43,672 - app.services.query_engine - INFO - Processing query [5a5105ef-9482-40bd-9210-85884ca5bbb2]: Compare rice production in Punjab and West Bengal
+2025-10-23 13:41:43,672 - app.services.query_engine - INFO - Step 1: Decomposing query...
+2025-10-23 13:41:51,104 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-23 13:41:51,110 - app.services.query_engine - INFO - Query decomposition: {'intent': 'comparison', 'sub_queries': ['Total rice production in Punjab for a specific time period', 'Total rice production in West Bengal for a specific time period'], 'required_data': {'states': ['Punjab', 'West Bengal'], 'districts': [], 'crops': ['rice'], 'time_period': {'start_year': None, 'end_year': None}, 'metrics': ['production']}, 'query_type': 'agricultural'}
+2025-10-23 13:41:51,110 - app.services.query_engine - INFO - Step 2: Finding relevant datasets...
+2025-10-23 13:41:52,230 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-10-23 13:41:52,237 - app.services.query_engine - INFO - Found 2 relevant datasets
+2025-10-23 13:41:52,237 - app.services.query_engine - INFO - Step 3: Retrieving data...
+2025-10-23 13:41:52,237 - app.services.query_engine - WARNING - Failed to retrieve data from crop_production: unsupported operand type(s) for +: 'NoneType' and 'int'
+2025-10-23 13:41:52,237 - app.services.query_engine - WARNING - Failed to retrieve data from area_production: unsupported operand type(s) for +: 'NoneType' and 'int'
+2025-10-23 13:41:52,237 - app.services.query_engine - INFO - Step 4: Generating answer...
+2025-10-23 13:42:11,864 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-23 13:42:11,870 - app.services.query_engine - INFO - Query processed successfully in 28.20s
+INFO:     127.0.0.1:52980 - "POST /api/v1/chat HTTP/1.1" 200 OK
+2025-10-23 13:42:52,556 - app.services.llm_service - INFO - Initialized OpenAI client with model gpt-4-turbo-preview
+2025-10-23 13:42:52,557 - app.services.query_engine - INFO - Processing query [6144c2ff-cb5e-4550-80c8-0dddbbbbb7a4]: Which state had highest rainfall in 2020?
+2025-10-23 13:42:52,557 - app.services.query_engine - INFO - Step 1: Decomposing query...
+2025-10-23 13:42:58,018 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-23 13:42:58,023 - app.services.query_engine - INFO - Query decomposition: {'intent': 'ranking', 'sub_queries': ['Identify the total rainfall in each state for 2020', 'Rank the states based on the total rainfall received in 2020'], 'required_data': {'states': [], 'districts': [], 'crops': [], 'time_period': {'start_year': 2020, 'end_year': 2020}, 'metrics': ['rainfall']}, 'query_type': 'climate'}
+2025-10-23 13:42:58,023 - app.services.query_engine - INFO - Step 2: Finding relevant datasets...
+2025-10-23 13:42:59,069 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-10-23 13:42:59,085 - app.services.query_engine - INFO - Found 1 relevant datasets
+2025-10-23 13:42:59,085 - app.services.query_engine - INFO - Step 3: Retrieving data...
+2025-10-23 13:42:59,086 - app.services.data_fetcher - INFO - Loading rainfall_data from cache
+2025-10-23 13:42:59,104 - app.services.query_engine - INFO - Step 4: Generating answer...
+2025-10-23 13:43:11,591 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-23 13:43:11,593 - app.services.query_engine - INFO - Query processed successfully in 19.04s
+INFO:     127.0.0.1:53017 - "POST /api/v1/chat HTTP/1.1" 200 OK
+2025-10-23 13:43:48,562 - app.services.llm_service - INFO - Initialized OpenAI client with model gpt-4-turbo-preview
+2025-10-23 13:43:48,562 - app.services.query_engine - INFO - Processing query [f2a17544-f2ee-48bf-81ce-b7745b9c4abb]: Show me wheat production trends
+2025-10-23 13:43:48,562 - app.services.query_engine - INFO - Step 1: Decomposing query...
+2025-10-23 13:43:54,311 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-23 13:43:54,313 - app.services.query_engine - INFO - Query decomposition: {'intent': 'trend_analysis', 'sub_queries': ['Analyze the annual wheat production volumes over a specified time period', 'Identify any significant changes or patterns in wheat production during the specified time period'], 'required_data': {'states': [], 'districts': [], 'crops': ['wheat'], 'time_period': {'start_year': 2013, 'end_year': 2023}, 'metrics': ['production']}, 'query_type': 'agricultural'}
+2025-10-23 13:43:54,314 - app.services.query_engine - INFO - Step 2: Finding relevant datasets...
+2025-10-23 13:43:56,213 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-10-23 13:43:56,255 - app.services.query_engine - INFO - Found 2 relevant datasets
+2025-10-23 13:43:56,255 - app.services.query_engine - INFO - Step 3: Retrieving data...
+2025-10-23 13:43:56,256 - app.services.data_fetcher - INFO - Loading crop_production from cache
+2025-10-23 13:43:56,267 - app.services.data_fetcher - INFO - Loading area_production from cache
+2025-10-23 13:43:56,271 - app.services.query_engine - INFO - Step 4: Generating answer...
+2025-10-23 13:44:12,817 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-23 13:44:12,821 - app.services.query_engine - INFO - Query processed successfully in 24.26s
+INFO:     127.0.0.1:53035 - "POST /api/v1/chat HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53322 - "OPTIONS /api/v1/chat HTTP/1.1" 200 OK
+2025-10-23 13:54:49,439 - app.services.llm_service - INFO - Initialized OpenAI client with model gpt-4-turbo-preview
+2025-10-23 13:54:49,439 - app.services.query_engine - INFO - Processing query [6df2df0f-8b3e-4380-bf9b-35dd2e84e72b]: Compare rice production in Punjab and West Bengal
+2025-10-23 13:54:49,439 - app.services.query_engine - INFO - Step 1: Decomposing query...
+2025-10-23 13:54:58,428 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-23 13:54:58,434 - app.services.query_engine - INFO - Query decomposition: {'intent': 'comparison', 'sub_queries': ['Total rice production in Punjab for a specific time period', 'Total rice production in West Bengal for a specific time period'], 'required_data': {'states': ['Punjab', 'West Bengal'], 'districts': [], 'crops': ['rice'], 'time_period': {'start_year': None, 'end_year': None}, 'metrics': ['production']}, 'query_type': 'agricultural'}
+2025-10-23 13:54:58,434 - app.services.query_engine - INFO - Step 2: Finding relevant datasets...
+2025-10-23 13:55:00,050 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-10-23 13:55:00,075 - app.services.query_engine - INFO - Found 2 relevant datasets
+2025-10-23 13:55:00,075 - app.services.query_engine - INFO - Step 3: Retrieving data...
+2025-10-23 13:55:00,075 - app.services.query_engine - WARNING - Failed to retrieve data from crop_production: unsupported operand type(s) for +: 'NoneType' and 'int'
+2025-10-23 13:55:00,075 - app.services.query_engine - WARNING - Failed to retrieve data from area_production: unsupported operand type(s) for +: 'NoneType' and 'int'
+2025-10-23 13:55:00,075 - app.services.query_engine - INFO - Step 4: Generating answer...
+2025-10-23 13:55:20,585 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-23 13:55:20,589 - app.services.query_engine - INFO - Query processed successfully in 31.15s
+INFO:     127.0.0.1:53322 - "POST /api/v1/chat HTTP/1.1" 200 OK
+2025-10-23 13:55:39,325 - app.services.llm_service - INFO - Initialized OpenAI client with model gpt-4-turbo-preview
+2025-10-23 13:55:39,325 - app.services.query_engine - INFO - Processing query [8d854079-1fc4-4290-8b85-8e57136ca2c4]: Compare rice production in Punjab and West Bengal
+2025-10-23 13:55:39,325 - app.services.query_engine - INFO - Step 1: Decomposing query...
+2025-10-23 13:55:44,547 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-23 13:55:44,551 - app.services.query_engine - INFO - Query decomposition: {'intent': 'comparison', 'sub_queries': ['Total rice production in Punjab for a specified period', 'Total rice production in West Bengal for a specified period'], 'required_data': {'states': ['Punjab', 'West Bengal'], 'districts': [], 'crops': ['rice'], 'time_period': {'start_year': None, 'end_year': None}, 'metrics': ['production']}, 'query_type': 'agricultural'}
+2025-10-23 13:55:44,551 - app.services.query_engine - INFO - Step 2: Finding relevant datasets...
+2025-10-23 13:55:45,880 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-10-23 13:55:45,884 - app.services.query_engine - INFO - Found 2 relevant datasets
+2025-10-23 13:55:45,884 - app.services.query_engine - INFO - Step 3: Retrieving data...
+2025-10-23 13:55:45,884 - app.services.query_engine - WARNING - Failed to retrieve data from crop_production: unsupported operand type(s) for +: 'NoneType' and 'int'
+2025-10-23 13:55:45,884 - app.services.query_engine - WARNING - Failed to retrieve data from area_production: unsupported operand type(s) for +: 'NoneType' and 'int'
+2025-10-23 13:55:45,884 - app.services.query_engine - INFO - Step 4: Generating answer...
+2025-10-23 13:56:06,667 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-23 13:56:06,671 - app.services.query_engine - INFO - Query processed successfully in 27.35s
+INFO:     127.0.0.1:53344 - "POST /api/v1/chat HTTP/1.1" 200 OK
+2025-10-23 13:56:28,826 - app.services.llm_service - INFO - Initialized OpenAI client with model gpt-4-turbo-preview
+2025-10-23 13:56:28,827 - app.services.query_engine - INFO - Processing query [4dab7879-45ea-4e11-95e3-62c47112d258]: What crops are in the dataset?
+2025-10-23 13:56:28,827 - app.services.query_engine - INFO - Step 1: Decomposing query...
+2025-10-23 13:56:32,816 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-23 13:56:32,822 - app.services.query_engine - INFO - Query decomposition: {'intent': 'general', 'sub_queries': ['List all crops included in the dataset'], 'required_data': {'states': [], 'districts': [], 'crops': [], 'time_period': {}, 'metrics': []}, 'query_type': 'agricultural'}
+2025-10-23 13:56:32,822 - app.services.query_engine - INFO - Step 2: Finding relevant datasets...
+2025-10-23 13:56:34,463 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-10-23 13:56:34,469 - app.services.query_engine - INFO - Found 3 relevant datasets
+2025-10-23 13:56:34,469 - app.services.query_engine - INFO - Step 3: Retrieving data...
+2025-10-23 13:56:34,469 - app.services.data_fetcher - INFO - Loading crop_production from cache
+2025-10-23 13:56:34,499 - app.services.data_fetcher - INFO - Loading area_production from cache
+2025-10-23 13:56:34,510 - app.services.data_fetcher - INFO - Loading agri_prices from cache
+2025-10-23 13:56:34,517 - app.services.query_engine - INFO - Step 4: Generating answer...
+2025-10-23 13:56:59,817 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-23 13:56:59,822 - app.services.query_engine - INFO - Query processed successfully in 31.00s
+INFO:     127.0.0.1:53355 - "POST /api/v1/chat HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53355 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53510 - "OPTIONS /api/v1/chat HTTP/1.1" 200 OK
+2025-10-23 14:16:34,464 - app.services.llm_service - INFO - Initialized OpenAI client with model gpt-4-turbo-preview
+2025-10-23 14:16:34,464 - app.services.query_engine - INFO - Processing query [a55e431f-7d5c-46db-a352-ad5ee67d53d2]: give me more rainfall states 
+2025-10-23 14:16:34,464 - app.services.query_engine - INFO - Step 1: Decomposing query...
+2025-10-23 14:16:41,443 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-23 14:16:41,458 - app.services.query_engine - INFO - Query decomposition: {'intent': 'ranking', 'sub_queries': ['Identify states with the highest average annual rainfall', 'Rank states by average annual rainfall'], 'required_data': {'states': [], 'districts': [], 'crops': [], 'time_period': {'start_year': None, 'end_year': None}, 'metrics': ['rainfall']}, 'query_type': 'climate'}
+2025-10-23 14:16:41,458 - app.services.query_engine - INFO - Step 2: Finding relevant datasets...
+2025-10-23 14:16:42,881 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-10-23 14:16:42,901 - app.services.query_engine - INFO - Found 2 relevant datasets
+2025-10-23 14:16:42,901 - app.services.query_engine - INFO - Step 3: Retrieving data...
+2025-10-23 14:16:42,901 - app.services.query_engine - WARNING - Failed to retrieve data from rainfall_data: unsupported operand type(s) for +: 'NoneType' and 'int'
+2025-10-23 14:16:42,901 - app.services.query_engine - WARNING - Failed to retrieve data from climate_data: unsupported operand type(s) for +: 'NoneType' and 'int'
+2025-10-23 14:16:42,901 - app.services.query_engine - INFO - Step 4: Generating answer...
+2025-10-23 14:16:58,338 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-23 14:16:58,342 - app.services.query_engine - INFO - Query processed successfully in 23.88s
+INFO:     127.0.0.1:53510 - "POST /api/v1/chat HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53728 - "OPTIONS /api/v1/chat HTTP/1.1" 200 OK
+2025-10-23 14:35:38,675 - app.services.llm_service - INFO - Initialized OpenAI client with model gpt-4-turbo-preview
+2025-10-23 14:35:38,675 - app.services.query_engine - INFO - Processing query [0042f03f-fa96-434e-a9d0-cc446b0870a4]: Compare rice production in Punjab and West Bengal
+2025-10-23 14:35:38,675 - app.services.query_engine - INFO - Step 1: Decomposing query...
+2025-10-23 14:35:43,568 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-23 14:35:43,579 - app.services.query_engine - INFO - Query decomposition: {'intent': 'comparison', 'sub_queries': ['Total rice production in Punjab for a specific time period', 'Total rice production in West Bengal for a specific time period'], 'required_data': {'states': ['Punjab', 'West Bengal'], 'districts': [], 'crops': ['rice'], 'time_period': {'start_year': None, 'end_year': None}, 'metrics': ['production']}, 'query_type': 'agricultural'}
+2025-10-23 14:35:43,579 - app.services.query_engine - INFO - Step 2: Finding relevant datasets...
+2025-10-23 14:35:44,790 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-10-23 14:35:44,913 - app.services.query_engine - INFO - Found 2 relevant datasets
+2025-10-23 14:35:44,913 - app.services.query_engine - INFO - Step 3: Retrieving data...
+2025-10-23 14:35:44,913 - app.services.query_engine - WARNING - Failed to retrieve data from crop_production: unsupported operand type(s) for +: 'NoneType' and 'int'
+2025-10-23 14:35:44,913 - app.services.query_engine - WARNING - Failed to retrieve data from area_production: unsupported operand type(s) for +: 'NoneType' and 'int'
+2025-10-23 14:35:44,913 - app.services.query_engine - INFO - Step 4: Generating answer...
+2025-10-23 14:36:06,156 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-23 14:36:06,162 - app.services.query_engine - INFO - Query processed successfully in 27.49s
+INFO:     127.0.0.1:53728 - "POST /api/v1/chat HTTP/1.1" 200 OK
+2025-10-23 14:42:19,850 - app.services.llm_service - INFO - Initialized OpenAI client with model gpt-4-turbo-preview
+2025-10-23 14:42:19,851 - app.services.query_engine - INFO - Processing query [219e77f7-4c61-4f16-bfd1-ab173fa07e27]: Compare rice production in Punjab and West Bengal
+2025-10-23 14:42:19,851 - app.services.query_engine - INFO - Step 1: Decomposing query...
+2025-10-23 14:42:25,042 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-23 14:42:25,059 - app.services.query_engine - INFO - Query decomposition: {'intent': 'comparison', 'sub_queries': ['Total rice production in Punjab for a specified period', 'Total rice production in West Bengal for a specified period'], 'required_data': {'states': ['Punjab', 'West Bengal'], 'districts': [], 'crops': ['rice'], 'time_period': {'start_year': None, 'end_year': None}, 'metrics': ['production']}, 'query_type': 'agricultural'}
+2025-10-23 14:42:25,060 - app.services.query_engine - INFO - Step 2: Finding relevant datasets...
+2025-10-23 14:42:25,744 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-10-23 14:42:25,770 - app.services.query_engine - INFO - Found 2 relevant datasets
+2025-10-23 14:42:25,770 - app.services.query_engine - INFO - Step 3: Retrieving data...
+2025-10-23 14:42:25,770 - app.services.query_engine - WARNING - Failed to retrieve data from crop_production: unsupported operand type(s) for +: 'NoneType' and 'int'
+2025-10-23 14:42:25,770 - app.services.query_engine - WARNING - Failed to retrieve data from area_production: unsupported operand type(s) for +: 'NoneType' and 'int'
+2025-10-23 14:42:25,770 - app.services.query_engine - INFO - Step 4: Generating answer...
+2025-10-23 14:42:42,644 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-23 14:42:42,648 - app.services.query_engine - INFO - Query processed successfully in 22.80s
+INFO:     127.0.0.1:54071 - "POST /api/v1/chat HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54174 - "GET /api/v1/health HTTP/1.1" 200 OK
+2025-10-23 14:48:15,826 - app.services.data_fetcher - INFO - Loading crop_production from cache
+2025-10-23 14:48:15,928 - app.services.data_fetcher - INFO - Loading area_production from cache
+2025-10-23 14:48:15,929 - app.services.data_fetcher - INFO - Loading rainfall_data from cache
+2025-10-23 14:48:15,931 - app.services.data_fetcher - INFO - Loading climate_data from cache
+2025-10-23 14:48:15,932 - app.services.data_fetcher - INFO - Loading agri_prices from cache
+INFO:     127.0.0.1:54270 - "GET /api/v1/datasets?category%5Bclient%5D=%5Bobject+Object%5D&category%5BqueryKey%5D%5B0%5D=datasets&category%5Bsignal%5D=%5Bobject+AbortSignal%5D HTTP/1.1" 200 OK
+2025-10-23 14:48:16,942 - app.services.data_fetcher - INFO - Loading crop_production from cache
+2025-10-23 14:48:16,947 - app.services.data_fetcher - INFO - Loading area_production from cache
+2025-10-23 14:48:16,952 - app.services.data_fetcher - INFO - Loading rainfall_data from cache
+2025-10-23 14:48:16,955 - app.services.data_fetcher - INFO - Loading climate_data from cache
+2025-10-23 14:48:16,958 - app.services.data_fetcher - INFO - Loading agri_prices from cache
+INFO:     127.0.0.1:54270 - "GET /api/v1/datasets?category%5Bclient%5D=%5Bobject+Object%5D&category%5BqueryKey%5D%5B0%5D=datasets&category%5Bsignal%5D=%5Bobject+AbortSignal%5D HTTP/1.1" 200 OK
+2025-10-23 14:48:20,183 - app.services.data_fetcher - INFO - Loading crop_production from cache
+2025-10-23 14:48:20,187 - app.services.data_fetcher - INFO - Loading area_production from cache
+2025-10-23 14:48:20,190 - app.services.data_fetcher - INFO - Loading rainfall_data from cache
+2025-10-23 14:48:20,193 - app.services.data_fetcher - INFO - Loading climate_data from cache
+2025-10-23 14:48:20,196 - app.services.data_fetcher - INFO - Loading agri_prices from cache
+INFO:     127.0.0.1:54270 - "GET /api/v1/datasets?category%5Bclient%5D=%5Bobject+Object%5D&category%5BqueryKey%5D%5B0%5D=datasets&category%5Bsignal%5D=%5Bobject+AbortSignal%5D HTTP/1.1" 200 OK
+2025-10-23 14:48:21,205 - app.services.data_fetcher - INFO - Loading crop_production from cache
+2025-10-23 14:48:21,212 - app.services.data_fetcher - INFO - Loading area_production from cache
+2025-10-23 14:48:21,216 - app.services.data_fetcher - INFO - Loading rainfall_data from cache
+2025-10-23 14:48:21,219 - app.services.data_fetcher - INFO - Loading climate_data from cache
+2025-10-23 14:48:21,222 - app.services.data_fetcher - INFO - Loading agri_prices from cache
+INFO:     127.0.0.1:54270 - "GET /api/v1/datasets?category%5Bclient%5D=%5Bobject+Object%5D&category%5BqueryKey%5D%5B0%5D=datasets&category%5Bsignal%5D=%5Bobject+AbortSignal%5D HTTP/1.1" 200 OK
+2025-10-23 14:54:24,178 - app.services.data_fetcher - INFO - Loading crop_production from cache
+2025-10-23 14:54:24,251 - app.services.data_fetcher - INFO - Loading area_production from cache
+2025-10-23 14:54:24,253 - app.services.data_fetcher - INFO - Loading rainfall_data from cache
+2025-10-23 14:54:24,254 - app.services.data_fetcher - INFO - Loading climate_data from cache
+2025-10-23 14:54:24,256 - app.services.data_fetcher - INFO - Loading agri_prices from cache
+INFO:     127.0.0.1:54688 - "GET /api/v1/datasets?category%5Bclient%5D=%5Bobject+Object%5D&category%5BqueryKey%5D%5B0%5D=datasets&category%5Bsignal%5D=%5Bobject+AbortSignal%5D HTTP/1.1" 200 OK
+2025-10-23 14:54:25,265 - app.services.data_fetcher - INFO - Loading crop_production from cache
+2025-10-23 14:54:25,269 - app.services.data_fetcher - INFO - Loading area_production from cache
+2025-10-23 14:54:25,272 - app.services.data_fetcher - INFO - Loading rainfall_data from cache
+2025-10-23 14:54:25,274 - app.services.data_fetcher - INFO - Loading climate_data from cache
+2025-10-23 14:54:25,276 - app.services.data_fetcher - INFO - Loading agri_prices from cache
+INFO:     127.0.0.1:54688 - "GET /api/v1/datasets?category%5Bclient%5D=%5Bobject+Object%5D&category%5BqueryKey%5D%5B0%5D=datasets&category%5Bsignal%5D=%5Bobject+AbortSignal%5D HTTP/1.1" 200 OK
+2025-10-23 14:54:34,801 - app.services.data_fetcher - INFO - Loading crop_production from cache
+2025-10-23 14:54:34,805 - app.services.data_fetcher - INFO - Loading area_production from cache
+2025-10-23 14:54:34,809 - app.services.data_fetcher - INFO - Loading rainfall_data from cache
+2025-10-23 14:54:34,811 - app.services.data_fetcher - INFO - Loading climate_data from cache
+2025-10-23 14:54:34,814 - app.services.data_fetcher - INFO - Loading agri_prices from cache
+INFO:     127.0.0.1:54728 - "GET /api/v1/datasets?category%5Bclient%5D=%5Bobject+Object%5D&category%5BqueryKey%5D%5B0%5D=datasets&category%5Bsignal%5D=%5Bobject+AbortSignal%5D HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54884 - "OPTIONS /api/v1/chat HTTP/1.1" 200 OK
+2025-10-23 14:57:07,756 - app.services.llm_service - INFO - Initialized OpenAI client with model gpt-4-turbo-preview
+2025-10-23 14:57:07,756 - app.services.query_engine - INFO - Processing query [1d1be8c1-0153-4fe4-bbec-07ca1349e868]: Compare rice production in Punjab and West Bengal
+2025-10-23 14:57:07,756 - app.services.query_engine - INFO - Step 1: Decomposing query...
+2025-10-23 14:57:13,536 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-23 14:57:13,574 - app.services.query_engine - INFO - Query decomposition: {'intent': 'comparison', 'sub_queries': ['Total rice production in Punjab for a specific time period', 'Total rice production in West Bengal for a specific time period'], 'required_data': {'states': ['Punjab', 'West Bengal'], 'districts': [], 'crops': ['rice'], 'time_period': {'start_year': None, 'end_year': None}, 'metrics': ['production']}, 'query_type': 'agricultural'}
+2025-10-23 14:57:13,575 - app.services.query_engine - INFO - Step 2: Finding relevant datasets...
+2025-10-23 14:57:14,938 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-10-23 14:57:14,977 - app.services.query_engine - INFO - Found 2 relevant datasets
+2025-10-23 14:57:14,977 - app.services.query_engine - INFO - Step 3: Retrieving data...
+2025-10-23 14:57:14,977 - app.services.query_engine - WARNING - Failed to retrieve data from crop_production: unsupported operand type(s) for +: 'NoneType' and 'int'
+2025-10-23 14:57:14,977 - app.services.query_engine - WARNING - Failed to retrieve data from area_production: unsupported operand type(s) for +: 'NoneType' and 'int'
+2025-10-23 14:57:14,977 - app.services.query_engine - INFO - Step 4: Generating answer...
+INFO:     127.0.0.1:54926 - "OPTIONS /api/v1/chat HTTP/1.1" 200 OK
+2025-10-23 14:57:23,200 - app.services.llm_service - INFO - Initialized OpenAI client with model gpt-4-turbo-preview
+2025-10-23 14:57:23,200 - app.services.query_engine - INFO - Processing query [b503371d-c379-4642-99ba-b2ba3f0508f4]: Compare rice production in Punjab and West Bengal
+2025-10-23 14:57:23,200 - app.services.query_engine - INFO - Step 1: Decomposing query...
+2025-10-23 14:57:31,463 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-23 14:57:31,468 - app.services.query_engine - INFO - Query decomposition: {'intent': 'comparison', 'sub_queries': ['Total rice production in Punjab for a specified period', 'Total rice production in West Bengal for a specified period'], 'required_data': {'states': ['Punjab', 'West Bengal'], 'districts': [], 'crops': ['rice'], 'time_period': {'start_year': None, 'end_year': None}, 'metrics': ['production']}, 'query_type': 'agricultural'}
+2025-10-23 14:57:31,469 - app.services.query_engine - INFO - Step 2: Finding relevant datasets...
+2025-10-23 14:57:36,208 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-10-23 14:57:36,258 - app.services.query_engine - INFO - Found 2 relevant datasets
+2025-10-23 14:57:36,259 - app.services.query_engine - INFO - Step 3: Retrieving data...
+2025-10-23 14:57:36,259 - app.services.query_engine - WARNING - Failed to retrieve data from crop_production: unsupported operand type(s) for +: 'NoneType' and 'int'
+2025-10-23 14:57:36,259 - app.services.query_engine - WARNING - Failed to retrieve data from area_production: unsupported operand type(s) for +: 'NoneType' and 'int'
+2025-10-23 14:57:36,259 - app.services.query_engine - INFO - Step 4: Generating answer...
+2025-10-23 14:57:38,240 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-23 14:57:38,294 - app.services.query_engine - INFO - Query processed successfully in 30.54s
+INFO:     127.0.0.1:54884 - "POST /api/v1/chat HTTP/1.1" 200 OK
+2025-10-23 14:57:50,320 - app.services.data_fetcher - INFO - Loading crop_production from cache
+2025-10-23 14:57:50,409 - app.services.data_fetcher - INFO - Loading area_production from cache
+2025-10-23 14:57:50,411 - app.services.data_fetcher - INFO - Loading rainfall_data from cache
+2025-10-23 14:57:50,412 - app.services.data_fetcher - INFO - Loading climate_data from cache
+2025-10-23 14:57:50,414 - app.services.data_fetcher - INFO - Loading agri_prices from cache
+INFO:     127.0.0.1:54928 - "GET /api/v1/datasets?category%5Bclient%5D=%5Bobject+Object%5D&category%5BqueryKey%5D%5B0%5D=datasets&category%5Bsignal%5D=%5Bobject+AbortSignal%5D HTTP/1.1" 200 OK
+2025-10-23 14:57:50,418 - app.services.data_fetcher - INFO - Loading crop_production from cache
+2025-10-23 14:57:50,420 - app.services.data_fetcher - INFO - Loading area_production from cache
+2025-10-23 14:57:50,421 - app.services.data_fetcher - INFO - Loading rainfall_data from cache
+2025-10-23 14:57:50,422 - app.services.data_fetcher - INFO - Loading climate_data from cache
+2025-10-23 14:57:50,423 - app.services.data_fetcher - INFO - Loading agri_prices from cache
+INFO:     127.0.0.1:54928 - "GET /api/v1/datasets?category%5Bclient%5D=%5Bobject+Object%5D&category%5BqueryKey%5D%5B0%5D=datasets&category%5Bsignal%5D=%5Bobject+AbortSignal%5D HTTP/1.1" 200 OK
+2025-10-23 14:57:57,130 - app.services.llm_service - INFO - Initialized OpenAI client with model gpt-4-turbo-preview
+2025-10-23 14:57:57,130 - app.services.query_engine - INFO - Processing query [319c324f-2358-442b-a8b0-443f0851beb6]: Compare rice production in Punjab and West Bengal
+2025-10-23 14:57:57,130 - app.services.query_engine - INFO - Step 1: Decomposing query...
+2025-10-23 14:57:57,919 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-23 14:57:57,935 - app.services.query_engine - INFO - Query processed successfully in 34.74s
+INFO:     127.0.0.1:54926 - "POST /api/v1/chat HTTP/1.1" 200 OK
+2025-10-23 14:58:04,110 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-23 14:58:04,114 - app.services.query_engine - INFO - Query decomposition: {'intent': 'comparison', 'sub_queries': ['Total rice production in Punjab for the specified time period', 'Total rice production in West Bengal for the specified time period'], 'required_data': {'states': ['Punjab', 'West Bengal'], 'districts': [], 'crops': ['rice'], 'time_period': {'start_year': None, 'end_year': None}, 'metrics': ['production']}, 'query_type': 'agricultural'}
+2025-10-23 14:58:04,114 - app.services.query_engine - INFO - Step 2: Finding relevant datasets...
+2025-10-23 14:58:07,388 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-10-23 14:58:07,468 - app.services.query_engine - INFO - Found 2 relevant datasets
+2025-10-23 14:58:07,468 - app.services.query_engine - INFO - Step 3: Retrieving data...
+2025-10-23 14:58:07,469 - app.services.query_engine - WARNING - Failed to retrieve data from crop_production: unsupported operand type(s) for +: 'NoneType' and 'int'
+2025-10-23 14:58:07,469 - app.services.query_engine - WARNING - Failed to retrieve data from area_production: unsupported operand type(s) for +: 'NoneType' and 'int'
+2025-10-23 14:58:07,469 - app.services.query_engine - INFO - Step 4: Generating answer...
+2025-10-23 14:58:24,173 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-23 14:58:24,201 - app.services.query_engine - INFO - Query processed successfully in 27.07s
+INFO:     127.0.0.1:54966 - "POST /api/v1/chat HTTP/1.1" 200 OK
+2025-10-23 14:59:11,854 - app.services.data_fetcher - INFO - Loading crop_production from cache
+2025-10-23 14:59:11,938 - app.services.data_fetcher - INFO - Loading area_production from cache
+2025-10-23 14:59:11,940 - app.services.data_fetcher - INFO - Loading rainfall_data from cache
+2025-10-23 14:59:11,941 - app.services.data_fetcher - INFO - Loading climate_data from cache
+2025-10-23 14:59:11,942 - app.services.data_fetcher - INFO - Loading agri_prices from cache
+INFO:     127.0.0.1:55004 - "GET /api/v1/datasets?category%5Bclient%5D=%5Bobject+Object%5D&category%5BqueryKey%5D%5B0%5D=datasets&category%5Bsignal%5D=%5Bobject+AbortSignal%5D HTTP/1.1" 200 OK
+2025-10-23 14:59:12,952 - app.services.data_fetcher - INFO - Loading crop_production from cache
+2025-10-23 14:59:12,958 - app.services.data_fetcher - INFO - Loading area_production from cache
+2025-10-23 14:59:12,962 - app.services.data_fetcher - INFO - Loading rainfall_data from cache
+2025-10-23 14:59:12,965 - app.services.data_fetcher - INFO - Loading climate_data from cache
+2025-10-23 14:59:12,968 - app.services.data_fetcher - INFO - Loading agri_prices from cache
+INFO:     127.0.0.1:55004 - "GET /api/v1/datasets?category%5Bclient%5D=%5Bobject+Object%5D&category%5BqueryKey%5D%5B0%5D=datasets&category%5Bsignal%5D=%5Bobject+AbortSignal%5D HTTP/1.1" 200 OK
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+2025-10-23 15:04:45,370 - app.services.data_fetcher - INFO - Loading crop_production from cache
+2025-10-23 15:04:45,470 - app.services.data_fetcher - INFO - Loading area_production from cache
+2025-10-23 15:04:45,472 - app.services.data_fetcher - INFO - Loading rainfall_data from cache
+2025-10-23 15:04:45,473 - app.services.data_fetcher - INFO - Loading climate_data from cache
+2025-10-23 15:04:45,474 - app.services.data_fetcher - INFO - Loading agri_prices from cache
+INFO:     127.0.0.1:55201 - "GET /api/v1/datasets?category%5Bclient%5D=%5Bobject+Object%5D&category%5BqueryKey%5D%5B0%5D=datasets&category%5Bsignal%5D=%5Bobject+AbortSignal%5D HTTP/1.1" 200 OK
+2025-10-23 15:04:45,480 - app.services.data_fetcher - INFO - Loading crop_production from cache
+2025-10-23 15:04:45,482 - app.services.data_fetcher - INFO - Loading area_production from cache
+2025-10-23 15:04:45,483 - app.services.data_fetcher - INFO - Loading rainfall_data from cache
+2025-10-23 15:04:45,484 - app.services.data_fetcher - INFO - Loading climate_data from cache
+2025-10-23 15:04:45,485 - app.services.data_fetcher - INFO - Loading agri_prices from cache
+INFO:     127.0.0.1:55201 - "GET /api/v1/datasets?category%5Bclient%5D=%5Bobject+Object%5D&category%5BqueryKey%5D%5B0%5D=datasets&category%5Bsignal%5D=%5Bobject+AbortSignal%5D HTTP/1.1" 200 OK
+2025-10-23 15:06:08,774 - app.services.llm_service - INFO - Initialized OpenAI client with model gpt-4-turbo-preview
+2025-10-23 15:06:08,775 - app.services.query_engine - INFO - Processing query [bfb4a108-9832-4073-9e37-ef2555305426]: Show me wheat production trends over the years
+2025-10-23 15:06:08,775 - app.services.query_engine - INFO - Step 1: Decomposing query...
+2025-10-23 15:06:19,020 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-23 15:06:19,032 - app.services.query_engine - INFO - Query decomposition: {'intent': 'trend_analysis', 'sub_queries': ['Annual wheat production volume for each year', 'Changes in wheat production volume over time'], 'required_data': {'states': [], 'districts': [], 'crops': ['wheat'], 'time_period': {'start_year': 2013, 'end_year': 2023}, 'metrics': ['production']}, 'query_type': 'agricultural'}
+2025-10-23 15:06:19,032 - app.services.query_engine - INFO - Step 2: Finding relevant datasets...
+2025-10-23 15:06:22,813 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-10-23 15:06:22,827 - app.services.query_engine - INFO - Found 2 relevant datasets
+2025-10-23 15:06:22,827 - app.services.query_engine - INFO - Step 3: Retrieving data...
+2025-10-23 15:06:22,827 - app.services.data_fetcher - INFO - Loading crop_production from cache
+2025-10-23 15:06:22,853 - app.services.data_fetcher - INFO - Loading area_production from cache
+2025-10-23 15:06:22,856 - app.services.query_engine - INFO - Step 4: Generating answer...
+2025-10-23 15:06:48,202 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-23 15:06:48,208 - app.services.query_engine - INFO - Query processed successfully in 39.43s
+INFO:     127.0.0.1:55214 - "POST /api/v1/chat HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55247 - "OPTIONS /api/v1/chat HTTP/1.1" 200 OK
+2025-10-23 15:07:11,822 - app.services.llm_service - INFO - Initialized OpenAI client with model gpt-4-turbo-preview
+2025-10-23 15:07:11,823 - app.services.query_engine - INFO - Processing query [79d0c8ec-16f6-4dcb-a945-9a25b4f3683a]: What are the rainfall patterns in Maharashtra?
+2025-10-23 15:07:11,823 - app.services.query_engine - INFO - Step 1: Decomposing query...
+2025-10-23 15:07:25,186 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-23 15:07:25,193 - app.services.query_engine - INFO - Query decomposition: {'intent': 'trend_analysis', 'sub_queries': ['Average annual rainfall in Maharashtra over the last decade', 'Month-wise distribution of rainfall in Maharashtra for the most recent year available'], 'required_data': {'states': ['Maharashtra'], 'districts': [], 'crops': [], 'time_period': {'start_year': 2013, 'end_year': 2023}, 'metrics': ['rainfall']}, 'query_type': 'climate'}
+2025-10-23 15:07:25,193 - app.services.query_engine - INFO - Step 2: Finding relevant datasets...
+2025-10-23 15:07:32,016 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-10-23 15:07:32,035 - app.services.query_engine - INFO - Found 1 relevant datasets
+2025-10-23 15:07:32,036 - app.services.query_engine - INFO - Step 3: Retrieving data...
+2025-10-23 15:07:32,036 - app.services.data_fetcher - INFO - Loading rainfall_data from cache
+2025-10-23 15:07:32,066 - app.services.query_engine - INFO - Step 4: Generating answer...
+2025-10-23 15:07:49,436 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-23 15:07:49,442 - app.services.query_engine - INFO - Query processed successfully in 37.62s
+INFO:     127.0.0.1:55247 - "POST /api/v1/chat HTTP/1.1" 200 OK
+2025-10-23 15:12:03,071 - app.services.data_fetcher - INFO - Loading crop_production from cache
+2025-10-23 15:12:03,172 - app.services.data_fetcher - INFO - Loading area_production from cache
+2025-10-23 15:12:03,174 - app.services.data_fetcher - INFO - Loading rainfall_data from cache
+2025-10-23 15:12:03,175 - app.services.data_fetcher - INFO - Loading climate_data from cache
+2025-10-23 15:12:03,177 - app.services.data_fetcher - INFO - Loading agri_prices from cache
+INFO:     127.0.0.1:55611 - "GET /api/v1/datasets?category%5Bclient%5D=%5Bobject+Object%5D&category%5BqueryKey%5D%5B0%5D=datasets&category%5Bsignal%5D=%5Bobject+AbortSignal%5D HTTP/1.1" 200 OK
+2025-10-23 15:12:03,183 - app.services.data_fetcher - INFO - Loading crop_production from cache
+2025-10-23 15:12:03,184 - app.services.data_fetcher - INFO - Loading area_production from cache
+2025-10-23 15:12:03,185 - app.services.data_fetcher - INFO - Loading rainfall_data from cache
+2025-10-23 15:12:03,186 - app.services.data_fetcher - INFO - Loading climate_data from cache
+2025-10-23 15:12:03,187 - app.services.data_fetcher - INFO - Loading agri_prices from cache
+INFO:     127.0.0.1:55611 - "GET /api/v1/datasets?category%5Bclient%5D=%5Bobject+Object%5D&category%5BqueryKey%5D%5B0%5D=datasets&category%5Bsignal%5D=%5Bobject+AbortSignal%5D HTTP/1.1" 200 OK
+2025-10-23 15:13:00,747 - app.services.llm_service - INFO - Initialized OpenAI client with model gpt-4-turbo-preview
+2025-10-23 15:13:00,751 - app.services.query_engine - INFO - Processing query [173e3ff5-3ee8-4388-aee4-ade0f5b2d21c]: Compare rice production in Punjab and West Bengal
+2025-10-23 15:13:00,751 - app.services.query_engine - INFO - Step 1: Decomposing query...
+2025-10-23 15:13:05,808 - openai._base_client - INFO - Retrying request to /chat/completions in 0.900065 seconds
+2025-10-23 15:13:11,712 - openai._base_client - INFO - Retrying request to /chat/completions in 1.957777 seconds
+2025-10-23 15:13:20,796 - app.services.llm_service - ERROR - LLM call failed: Request timed out.
+2025-10-23 15:13:20,797 - app.services.query_engine - ERROR - Query processing failed: Request timed out.
+Traceback (most recent call last):
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/httpx/_transports/default.py", line 66, in map_httpcore_exceptions
+    yield
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/httpx/_transports/default.py", line 366, in handle_async_request
+    resp = await self._pool.handle_async_request(req)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/httpcore/_async/connection_pool.py", line 256, in handle_async_request
+    raise exc from None
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/httpcore/_async/connection_pool.py", line 236, in handle_async_request
+    response = await connection.handle_async_request(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/httpcore/_async/connection.py", line 101, in handle_async_request
+    raise exc
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/httpcore/_async/connection.py", line 78, in handle_async_request
+    stream = await self._connect(request)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/httpcore/_async/connection.py", line 156, in _connect
+    stream = await stream.start_tls(**kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/httpcore/_backends/anyio.py", line 67, in start_tls
+    with map_exceptions(exc_map):
+  File "/Users/mayursantoshtarate/.pyenv/versions/3.11.8/lib/python3.11/contextlib.py", line 158, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/httpcore/_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.ConnectTimeout
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/openai/_base_client.py", line 1342, in _request
+    response = await self._client.send(
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/httpx/_client.py", line 1617, in send
+    response = await self._send_handling_auth(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/httpx/_client.py", line 1645, in _send_handling_auth
+    response = await self._send_handling_redirects(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/httpx/_client.py", line 1682, in _send_handling_redirects
+    response = await self._send_single_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/httpx/_client.py", line 1719, in _send_single_request
+    response = await transport.handle_async_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/httpx/_transports/default.py", line 365, in handle_async_request
+    with map_httpcore_exceptions():
+  File "/Users/mayursantoshtarate/.pyenv/versions/3.11.8/lib/python3.11/contextlib.py", line 158, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/httpx/_transports/default.py", line 83, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ConnectTimeout
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/app/services/query_engine.py", line 57, in process_query
+    decomposition = await self.llm_service.decompose_query(user_query)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/app/services/llm_service.py", line 106, in decompose_query
+    response = await self._call_llm(prompt)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/app/services/llm_service.py", line 212, in _call_llm
+    response = await self.client.chat.completions.create(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/openai/resources/chat/completions.py", line 1199, in create
+    return await self._post(
+           ^^^^^^^^^^^^^^^^^
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/openai/_base_client.py", line 1542, in post
+    return await self.request(cast_to, opts, stream=stream, stream_cls=stream_cls)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/openai/_base_client.py", line 1316, in request
+    return await self._request(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/openai/_base_client.py", line 1374, in _request
+    return await self._retry_request(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/openai/_base_client.py", line 1424, in _retry_request
+    return await self._request(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/openai/_base_client.py", line 1374, in _request
+    return await self._retry_request(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/openai/_base_client.py", line 1424, in _retry_request
+    return await self._request(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/openai/_base_client.py", line 1383, in _request
+    raise APITimeoutError(request=request) from err
+openai.APITimeoutError: Request timed out.
+2025-10-23 15:13:20,823 - app.api.chat - ERROR - Chat endpoint error: Request timed out.
+Traceback (most recent call last):
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/httpx/_transports/default.py", line 66, in map_httpcore_exceptions
+    yield
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/httpx/_transports/default.py", line 366, in handle_async_request
+    resp = await self._pool.handle_async_request(req)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/httpcore/_async/connection_pool.py", line 256, in handle_async_request
+    raise exc from None
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/httpcore/_async/connection_pool.py", line 236, in handle_async_request
+    response = await connection.handle_async_request(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/httpcore/_async/connection.py", line 101, in handle_async_request
+    raise exc
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/httpcore/_async/connection.py", line 78, in handle_async_request
+    stream = await self._connect(request)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/httpcore/_async/connection.py", line 156, in _connect
+    stream = await stream.start_tls(**kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/httpcore/_backends/anyio.py", line 67, in start_tls
+    with map_exceptions(exc_map):
+  File "/Users/mayursantoshtarate/.pyenv/versions/3.11.8/lib/python3.11/contextlib.py", line 158, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/httpcore/_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.ConnectTimeout
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/openai/_base_client.py", line 1342, in _request
+    response = await self._client.send(
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/httpx/_client.py", line 1617, in send
+    response = await self._send_handling_auth(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/httpx/_client.py", line 1645, in _send_handling_auth
+    response = await self._send_handling_redirects(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/httpx/_client.py", line 1682, in _send_handling_redirects
+    response = await self._send_single_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/httpx/_client.py", line 1719, in _send_single_request
+    response = await transport.handle_async_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/httpx/_transports/default.py", line 365, in handle_async_request
+    with map_httpcore_exceptions():
+  File "/Users/mayursantoshtarate/.pyenv/versions/3.11.8/lib/python3.11/contextlib.py", line 158, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/httpx/_transports/default.py", line 83, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ConnectTimeout
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/app/api/chat.py", line 36, in chat
+    response = await query_engine.process_query(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/app/services/query_engine.py", line 57, in process_query
+    decomposition = await self.llm_service.decompose_query(user_query)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/app/services/llm_service.py", line 106, in decompose_query
+    response = await self._call_llm(prompt)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/app/services/llm_service.py", line 212, in _call_llm
+    response = await self.client.chat.completions.create(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/openai/resources/chat/completions.py", line 1199, in create
+    return await self._post(
+           ^^^^^^^^^^^^^^^^^
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/openai/_base_client.py", line 1542, in post
+    return await self.request(cast_to, opts, stream=stream, stream_cls=stream_cls)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/openai/_base_client.py", line 1316, in request
+    return await self._request(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/openai/_base_client.py", line 1374, in _request
+    return await self._retry_request(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/openai/_base_client.py", line 1424, in _retry_request
+    return await self._request(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/openai/_base_client.py", line 1374, in _request
+    return await self._retry_request(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/openai/_base_client.py", line 1424, in _retry_request
+    return await self._request(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/openai/_base_client.py", line 1383, in _request
+    raise APITimeoutError(request=request) from err
+openai.APITimeoutError: Request timed out.
+INFO:     127.0.0.1:55676 - "POST /api/v1/chat HTTP/1.1" 500 Internal Server Error
+2025-10-23 15:13:29,447 - app.services.llm_service - INFO - Initialized OpenAI client with model gpt-4-turbo-preview
+2025-10-23 15:13:29,447 - app.services.query_engine - INFO - Processing query [7e422acf-d6da-4e2a-8716-40c236fdc76d]: Compare rice production in Punjab and West Bengal
+2025-10-23 15:13:29,447 - app.services.query_engine - INFO - Step 1: Decomposing query...
+2025-10-23 15:13:36,347 - openai._base_client - INFO - Retrying request to /chat/completions in 0.949473 seconds
+2025-10-23 15:13:44,404 - openai._base_client - INFO - Retrying request to /chat/completions in 1.565382 seconds
+2025-10-23 15:13:52,525 - app.services.llm_service - ERROR - LLM call failed: Request timed out.
+2025-10-23 15:13:52,526 - app.services.query_engine - ERROR - Query processing failed: Request timed out.
+Traceback (most recent call last):
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/httpx/_transports/default.py", line 66, in map_httpcore_exceptions
+    yield
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/httpx/_transports/default.py", line 366, in handle_async_request
+    resp = await self._pool.handle_async_request(req)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/httpcore/_async/connection_pool.py", line 256, in handle_async_request
+    raise exc from None
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/httpcore/_async/connection_pool.py", line 236, in handle_async_request
+    response = await connection.handle_async_request(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/httpcore/_async/connection.py", line 101, in handle_async_request
+    raise exc
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/httpcore/_async/connection.py", line 78, in handle_async_request
+    stream = await self._connect(request)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/httpcore/_async/connection.py", line 156, in _connect
+    stream = await stream.start_tls(**kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/httpcore/_backends/anyio.py", line 67, in start_tls
+    with map_exceptions(exc_map):
+  File "/Users/mayursantoshtarate/.pyenv/versions/3.11.8/lib/python3.11/contextlib.py", line 158, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/httpcore/_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.ConnectTimeout
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/openai/_base_client.py", line 1342, in _request
+    response = await self._client.send(
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/httpx/_client.py", line 1617, in send
+    response = await self._send_handling_auth(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/httpx/_client.py", line 1645, in _send_handling_auth
+    response = await self._send_handling_redirects(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/httpx/_client.py", line 1682, in _send_handling_redirects
+    response = await self._send_single_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/httpx/_client.py", line 1719, in _send_single_request
+    response = await transport.handle_async_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/httpx/_transports/default.py", line 365, in handle_async_request
+    with map_httpcore_exceptions():
+  File "/Users/mayursantoshtarate/.pyenv/versions/3.11.8/lib/python3.11/contextlib.py", line 158, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/httpx/_transports/default.py", line 83, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ConnectTimeout
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/app/services/query_engine.py", line 57, in process_query
+    decomposition = await self.llm_service.decompose_query(user_query)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/app/services/llm_service.py", line 106, in decompose_query
+    response = await self._call_llm(prompt)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/app/services/llm_service.py", line 212, in _call_llm
+    response = await self.client.chat.completions.create(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/openai/resources/chat/completions.py", line 1199, in create
+    return await self._post(
+           ^^^^^^^^^^^^^^^^^
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/openai/_base_client.py", line 1542, in post
+    return await self.request(cast_to, opts, stream=stream, stream_cls=stream_cls)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/openai/_base_client.py", line 1316, in request
+    return await self._request(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/openai/_base_client.py", line 1374, in _request
+    return await self._retry_request(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/openai/_base_client.py", line 1424, in _retry_request
+    return await self._request(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/openai/_base_client.py", line 1374, in _request
+    return await self._retry_request(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/openai/_base_client.py", line 1424, in _retry_request
+    return await self._request(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/openai/_base_client.py", line 1383, in _request
+    raise APITimeoutError(request=request) from err
+openai.APITimeoutError: Request timed out.
+2025-10-23 15:13:52,535 - app.api.chat - ERROR - Chat endpoint error: Request timed out.
+Traceback (most recent call last):
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/httpx/_transports/default.py", line 66, in map_httpcore_exceptions
+    yield
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/httpx/_transports/default.py", line 366, in handle_async_request
+    resp = await self._pool.handle_async_request(req)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/httpcore/_async/connection_pool.py", line 256, in handle_async_request
+    raise exc from None
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/httpcore/_async/connection_pool.py", line 236, in handle_async_request
+    response = await connection.handle_async_request(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/httpcore/_async/connection.py", line 101, in handle_async_request
+    raise exc
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/httpcore/_async/connection.py", line 78, in handle_async_request
+    stream = await self._connect(request)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/httpcore/_async/connection.py", line 156, in _connect
+    stream = await stream.start_tls(**kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/httpcore/_backends/anyio.py", line 67, in start_tls
+    with map_exceptions(exc_map):
+  File "/Users/mayursantoshtarate/.pyenv/versions/3.11.8/lib/python3.11/contextlib.py", line 158, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/httpcore/_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.ConnectTimeout
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/openai/_base_client.py", line 1342, in _request
+    response = await self._client.send(
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/httpx/_client.py", line 1617, in send
+    response = await self._send_handling_auth(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/httpx/_client.py", line 1645, in _send_handling_auth
+    response = await self._send_handling_redirects(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/httpx/_client.py", line 1682, in _send_handling_redirects
+    response = await self._send_single_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/httpx/_client.py", line 1719, in _send_single_request
+    response = await transport.handle_async_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/httpx/_transports/default.py", line 365, in handle_async_request
+    with map_httpcore_exceptions():
+  File "/Users/mayursantoshtarate/.pyenv/versions/3.11.8/lib/python3.11/contextlib.py", line 158, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/httpx/_transports/default.py", line 83, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ConnectTimeout
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/app/api/chat.py", line 36, in chat
+    response = await query_engine.process_query(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/app/services/query_engine.py", line 57, in process_query
+    decomposition = await self.llm_service.decompose_query(user_query)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/app/services/llm_service.py", line 106, in decompose_query
+    response = await self._call_llm(prompt)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/app/services/llm_service.py", line 212, in _call_llm
+    response = await self.client.chat.completions.create(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/openai/resources/chat/completions.py", line 1199, in create
+    return await self._post(
+           ^^^^^^^^^^^^^^^^^
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/openai/_base_client.py", line 1542, in post
+    return await self.request(cast_to, opts, stream=stream, stream_cls=stream_cls)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/openai/_base_client.py", line 1316, in request
+    return await self._request(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/openai/_base_client.py", line 1374, in _request
+    return await self._retry_request(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/openai/_base_client.py", line 1424, in _retry_request
+    return await self._request(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/openai/_base_client.py", line 1374, in _request
+    return await self._retry_request(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/openai/_base_client.py", line 1424, in _retry_request
+    return await self._request(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mayursantoshtarate/Desktop/Apperentice/backend/venv/lib/python3.11/site-packages/openai/_base_client.py", line 1383, in _request
+    raise APITimeoutError(request=request) from err
+openai.APITimeoutError: Request timed out.
+INFO:     127.0.0.1:55716 - "POST /api/v1/chat HTTP/1.1" 500 Internal Server Error
+2025-10-23 15:23:11,817 - app.services.data_fetcher - INFO - Loading crop_production from cache
+2025-10-23 15:23:11,920 - app.services.data_fetcher - INFO - Loading area_production from cache
+2025-10-23 15:23:11,922 - app.services.data_fetcher - INFO - Loading rainfall_data from cache
+2025-10-23 15:23:11,924 - app.services.data_fetcher - INFO - Loading climate_data from cache
+2025-10-23 15:23:11,925 - app.services.data_fetcher - INFO - Loading agri_prices from cache
+INFO:     127.0.0.1:56633 - "GET /api/v1/datasets?category%5Bclient%5D=%5Bobject+Object%5D&category%5BqueryKey%5D%5B0%5D=datasets&category%5Bsignal%5D=%5Bobject+AbortSignal%5D HTTP/1.1" 200 OK
+2025-10-23 15:23:11,934 - app.services.data_fetcher - INFO - Loading crop_production from cache
+2025-10-23 15:23:11,937 - app.services.data_fetcher - INFO - Loading area_production from cache
+2025-10-23 15:23:11,938 - app.services.data_fetcher - INFO - Loading rainfall_data from cache
+2025-10-23 15:23:11,939 - app.services.data_fetcher - INFO - Loading climate_data from cache
+2025-10-23 15:23:11,941 - app.services.data_fetcher - INFO - Loading agri_prices from cache
+INFO:     127.0.0.1:56633 - "GET /api/v1/datasets?category%5Bclient%5D=%5Bobject+Object%5D&category%5BqueryKey%5D%5B0%5D=datasets&category%5Bsignal%5D=%5Bobject+AbortSignal%5D HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56646 - "OPTIONS /api/v1/chat HTTP/1.1" 200 OK
+2025-10-23 15:23:55,234 - app.services.llm_service - INFO - Initialized OpenAI client with model gpt-4-turbo-preview
+2025-10-23 15:23:55,235 - app.services.query_engine - INFO - Processing query [3284c2eb-89f9-4d5a-bb98-778758a615fc]: Compare rice production in Punjab and West Bengal
+2025-10-23 15:23:55,235 - app.services.query_engine - INFO - Step 1: Decomposing query...
+2025-10-23 15:24:01,735 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-23 15:24:01,751 - app.services.query_engine - INFO - Query decomposition: {'intent': 'comparison', 'sub_queries': ['Total rice production in Punjab for a specified time period', 'Total rice production in West Bengal for a specified time period'], 'required_data': {'states': ['Punjab', 'West Bengal'], 'districts': [], 'crops': ['rice'], 'time_period': {'start_year': None, 'end_year': None}, 'metrics': ['production']}, 'query_type': 'agricultural'}
+2025-10-23 15:24:01,751 - app.services.query_engine - INFO - Step 2: Finding relevant datasets...
+2025-10-23 15:24:03,138 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-10-23 15:24:03,156 - app.services.query_engine - INFO - Found 2 relevant datasets
+2025-10-23 15:24:03,156 - app.services.query_engine - INFO - Step 3: Retrieving data...
+2025-10-23 15:24:03,156 - app.services.query_engine - WARNING - Failed to retrieve data from crop_production: unsupported operand type(s) for +: 'NoneType' and 'int'
+2025-10-23 15:24:03,156 - app.services.query_engine - WARNING - Failed to retrieve data from area_production: unsupported operand type(s) for +: 'NoneType' and 'int'
+2025-10-23 15:24:03,157 - app.services.query_engine - INFO - Step 4: Generating answer...
+2025-10-23 15:24:22,262 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-23 15:24:22,267 - app.services.query_engine - INFO - Query processed successfully in 27.03s
+INFO:     127.0.0.1:56646 - "POST /api/v1/chat HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56817 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57227 - "GET /api/v1/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57543 - "OPTIONS /api/v1/chat HTTP/1.1" 200 OK
+2025-10-23 15:48:09,766 - app.services.llm_service - INFO - Initialized OpenAI client with model gpt-4-turbo-preview
+2025-10-23 15:48:09,766 - app.services.query_engine - INFO - Processing query [1961574a-887c-44e5-9531-720f2086195d]: What crops are in the dataset?
+2025-10-23 15:48:09,766 - app.services.query_engine - INFO - Step 1: Decomposing query...
+2025-10-23 15:48:14,657 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-23 15:48:14,667 - app.services.query_engine - INFO - Query decomposition: {'intent': 'general', 'sub_queries': ['List all crops included in the dataset'], 'required_data': {'states': [], 'districts': [], 'crops': [], 'time_period': {}, 'metrics': []}, 'query_type': 'agricultural'}
+2025-10-23 15:48:14,667 - app.services.query_engine - INFO - Step 2: Finding relevant datasets...
+2025-10-23 15:48:15,765 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-10-23 15:48:15,786 - app.services.query_engine - INFO - Found 3 relevant datasets
+2025-10-23 15:48:15,787 - app.services.query_engine - INFO - Step 3: Retrieving data...
+2025-10-23 15:48:15,787 - app.services.data_fetcher - INFO - Loading crop_production from cache
+2025-10-23 15:48:15,900 - app.services.data_fetcher - INFO - Loading area_production from cache
+2025-10-23 15:48:15,906 - app.services.data_fetcher - INFO - Loading agri_prices from cache
+2025-10-23 15:48:15,912 - app.services.query_engine - INFO - Step 4: Generating answer...
+2025-10-23 15:48:38,953 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-10-23 15:48:39,120 - app.services.query_engine - INFO - Query processed successfully in 29.35s

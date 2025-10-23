@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug - Check Console</title>
+    <script type="module">
+        // This will log any errors
+        window.addEventListener('error', (e) => {
+            document.body.innerHTML += `<div style="color: red; padding: 20px; background: #fee; margin: 10px; border: 2px solid red;">
+                <h2>❌ Error Detected:</h2>
+                <pre>${e.message}\n${e.filename}:${e.lineno}:${e.colno}</pre>
+            </div>`;
+        });
+
+        // Try to import the main module
+        import('/src/main.jsx').then(() => {
+            console.log('✅ Main.jsx loaded successfully');
+        }).catch((err) => {
+            document.body.innerHTML = `<div style="color: red; padding: 20px; background: #fee; margin: 20px; border: 2px solid red;">
+                <h1>❌ Failed to load main.jsx</h1>
+                <pre>${err.message}\n\n${err.stack}</pre>
+            </div>`;
+        });
+    </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .success {
+            background: #d4edda;
+            color: #155724;
+            padding: 20px;
+            margin: 20px;
+            border: 2px solid #28a745;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="success">
+        <h1>🔍 Checking for JavaScript errors...</h1>
+        <p>Check the browser console (F12) for detailed error messages.</p>
+        <p>If you see this and no errors below, the app should be loading.</p>
+    </div>
+    <div id="root"></div>
+</body>
+</html>
