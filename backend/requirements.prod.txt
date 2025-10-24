@@ -1,0 +1,26 @@
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+pydantic==2.5.0
+pydantic-settings==2.1.0
+
+# LLM Integration
+openai==1.3.7
+
+# Vector Database (lighter config for Railway)
+chromadb==0.4.18
+
+# Data Processing
+pandas==2.1.3
+numpy==1.26.2
+pyarrow==14.0.1
+openpyxl==3.1.2
+requests==2.31.0
+aiohttp==3.9.1
+
+# Utilities
+python-dotenv==1.0.0
+python-multipart==0.0.6
+pyyaml==6.0.1
+
+# Monitoring
+python-json-logger==2.0.7
